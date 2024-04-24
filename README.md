@@ -18,19 +18,6 @@
 
 `npm i`を実行してパッケージをインストールします。
 
-### 4. ビルド
-
-ビルド前に必ず`electron-rebuild`を実行してください！
-
-```bash
-# Windowsの場合
-./node_modules/.bin/electron-rebuild.cmd
-# Linuxの場合
-./node_modules/.bin/electron-rebuild
-```
-
-windows向けにビルドする場合は`npm run build:win`、linux向けは`npm run build:linux`を実行します。
-
 ## License
 
 [MIT License](https://github.com/opera7133/nfc-inout/blob/main/LICENSE)
