@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/NotoSansJP-Regular.woff') format('woff'),
+    url('../fonts/NotoSansJP-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/NotoSansJP-Medium.woff') format('woff'),
+    url('../fonts/NotoSansJP-Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/NotoSansJP-Bold.woff') format('woff'),
+    url('../fonts/NotoSansJP-Bold.otf') format('opentype');
+}
+
+html, body {
+  font-family: 'Noto Sans JP', 'Helvetica Neue', 'Helvetica', 'Hiragino Sans',
+  'Hiragino Kaku Gothic ProN', 'Arial', 'Yu Gothic', 'Meiryo', sans-serif;
+}
+
+body {
+  background-color: #292929;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 1rem;
+}
+
+body h3 {
+  font-size: 2rem;
+}
+
