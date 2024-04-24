@@ -15,7 +15,7 @@ import asyncio
 eel.init('web', allowed_extensions=['.js', '.html'])
 
 env = Environment(loader=FileSystemLoader('web'))
-# clf = nfc.ContactlessFrontend('usb')
+clf = nfc.ContactlessFrontend('usb')
 
 
 async def play_voice(message):
@@ -34,10 +34,9 @@ def render_template(template_name, **context):
 @eel.expose
 def start_read():
     try:
-        # tag = clf.connect(rdwr={'on-connect': lambda tag: False})
-        # idm = binascii.hexlify(tag.identifier).upper()
-        # idm = idm.decode()
-        idm = "0101050106034A2B"
+        tag = clf.connect(rdwr={'on-connect': lambda tag: False})
+        idm = binascii.hexlify(tag.identifier).upper()
+        idm = idm.decode()
         card = session.query(Card).filter_by(idm=idm).first()
         if card is not None:
             user = session.query(User).filter_by(id=card.userId).first()
