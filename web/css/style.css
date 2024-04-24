@@ -36,9 +36,10 @@ body {
   align-items: center;
   height: 100vh;
   gap: 1rem;
+  overflow: hidden;
 }
 
 body h3 {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 

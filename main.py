@@ -28,7 +28,7 @@ def start_read():
         tag = clf.connect(rdwr={'on-connect': lambda tag: False})
         idm = binascii.hexlify(tag.identifier).upper()
         idm = idm.decode()
-        card = session.query(Card).filter_by(idm=idm).first()
+        card = session.query(Card).filter_by(idm="").first()
         if card is not None:
             user = session.query(User).filter_by(id=card.userId).first()
             fs, data = wav.read("success.wav")
@@ -53,4 +53,4 @@ def close():
 
 
 eel.start('templates/index.html', jinja_templates='templates',
-          mode='chrome', size=(600, 400), close_callback=close)
+          mode='chrome', size=(960, 540), close_callback=close)
