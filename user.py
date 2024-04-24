@@ -13,6 +13,7 @@ class User(Base):
     id = Column('id', String(26), primary_key=True,
                 unique=True, nullable=False)
     name = Column('name', String(), unique=True, nullable=False)
+    yomi = Column('yomi', String(), nullable=True)
     state = Column('state', Boolean, default=True, nullable=False)
     last = Column('last', DateTime(), nullable=True)
 

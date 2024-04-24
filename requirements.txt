@@ -6,3 +6,4 @@ sqlalchemy
 load_dotenv
 pymysql
 scipy
+voicevox-client
