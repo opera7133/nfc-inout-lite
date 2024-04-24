@@ -30,4 +30,9 @@ function remove_not_found(){
   document.getElementById("status").classList.add("icono-sync");
 }
 
+eel.expose(close_window);
+function close_window() {
+  window.close()
+}
+
 eel.start_read()

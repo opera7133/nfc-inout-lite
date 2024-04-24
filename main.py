@@ -9,13 +9,13 @@ import scipy.io.wavfile as wav
 from setting import session
 from user import *
 from card import *
-from vvclient import Client
+from voicevox import Client
 import asyncio
 
 eel.init('web', allowed_extensions=['.js', '.html'])
 
 env = Environment(loader=FileSystemLoader('web'))
-clf = nfc.ContactlessFrontend('usb')
+# clf = nfc.ContactlessFrontend('usb')
 
 
 async def play_voice(message):
@@ -34,9 +34,10 @@ def render_template(template_name, **context):
 @eel.expose
 def start_read():
     try:
-        tag = clf.connect(rdwr={'on-connect': lambda tag: False})
-        idm = binascii.hexlify(tag.identifier).upper()
-        idm = idm.decode()
+        # tag = clf.connect(rdwr={'on-connect': lambda tag: False})
+        # idm = binascii.hexlify(tag.identifier).upper()
+        # idm = idm.decode()
+        idm = "0101050106034A2B"
         card = session.query(Card).filter_by(idm=idm).first()
         if card is not None:
             user = session.query(User).filter_by(id=card.userId).first()
@@ -57,6 +58,7 @@ def start_read():
         start_read()
     except Exception as e:
         print(e)
+        eel.close_window()
         sys.exit()
 
 
