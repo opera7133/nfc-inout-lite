@@ -5,3 +5,4 @@ sounddevice
 sqlalchemy
 load_dotenv
 pymysql
+scipy
