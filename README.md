@@ -20,4 +20,4 @@
 
 ## License
 
-[MIT License](https://github.com/opera7133/nfc-inout/blob/main/LICENSE)
+[MIT License](https://github.com/opera7133/nfc-inout-lite/blob/main/LICENSE)
