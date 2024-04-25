@@ -10,6 +10,9 @@ from user import *
 from card import *
 from voicevox import Client
 import asyncio
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 eel.init('web', allowed_extensions=['.js', '.html'])
 
@@ -18,7 +21,7 @@ clf = nfc.ContactlessFrontend('usb')
 
 
 async def play_voice(message):
-    async with Client() as client:
+    async with Client(base_url=os.getenv("VV_HOST")) as client:
         audio_query = await client.create_audio_query(message, speaker=1)
         with open("voice.wav", "wb") as f:
             f.write(await audio_query.synthesis(speaker=1))
