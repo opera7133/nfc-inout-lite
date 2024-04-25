@@ -46,7 +46,7 @@ def start_read():
             play_obj = wav_obj.play()
             if (user.yomi != "" or user.yomi != None):
                 asyncio.run(play_voice(
-                    user.yomi + "さん、お疲れ様でした！" if user.state else user.yomi + "さん、こんにちは！"))
+                    user.yomi + "さん、お疲れ様なのだ！" if user.state else user.yomi + "さん、こんにちはなのだ！"))
             eel.set_readed(user.name, "out" if user.state else "in")
             user.state = not user.state
             session.commit()
