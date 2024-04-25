@@ -4,8 +4,7 @@ import binascii
 import sys
 from time import sleep
 from jinja2 import Environment, FileSystemLoader
-import sounddevice as sd
-import scipy.io.wavfile as wav
+import simpleaudio
 from setting import session
 from user import *
 from card import *
@@ -23,6 +22,8 @@ async def play_voice(message):
         audio_query = await client.create_audio_query(message, speaker=1)
         with open("voice.wav", "wb") as f:
             f.write(await audio_query.synthesis(speaker=1))
+        wav_obj = simpleaudio.WaveObject.from_wave_file("voice.wav")
+        play_obj = wav_obj.play()
 
 
 @eel.expose
@@ -40,11 +41,12 @@ def start_read():
         card = session.query(Card).filter_by(idm=idm).first()
         if card is not None:
             user = session.query(User).filter_by(id=card.userId).first()
-            fs, data = wav.read("success.wav")
-            sd.play(data, fs)
+            wav_obj = simpleaudio.WaveObject.from_wave_file(
+                "success.wav")
+            play_obj = wav_obj.play()
             if (user.yomi != "" or user.yomi != None):
                 asyncio.run(play_voice(
-                    user.yomi + "さん、お疲れ様でした！" if user.state else "さん、こんにちは！"))
+                    user.yomi + "さん、お疲れ様でした！" if user.state else user.yomi + "さん、こんにちは！"))
             eel.set_readed(user.name, "out" if user.state else "in")
             user.state = not user.state
             session.commit()

@@ -1,9 +1,8 @@
 eel
 nfcpy
 jinja2
-sounddevice
 sqlalchemy
 load_dotenv
 pymysql
-scipy
+simpleaudio
 voicevox-client
