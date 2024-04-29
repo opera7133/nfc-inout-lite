@@ -13,6 +13,8 @@ import asyncio
 from dotenv import load_dotenv
 import os
 import datetime
+import requests
+import json
 load_dotenv()
 
 eel.init('web', allowed_extensions=['.js', '.html'])
@@ -52,7 +54,14 @@ def start_read():
                 asyncio.run(play_voice(
                     user.yomi + "さん、お疲れ様なのだ！" if user.state else user.yomi + "さん、こんにちはなのだ！"))
             eel.set_readed(user.name, "out" if user.state else "in")
-            user.last = None if user.state else datetime.datetime.now(datetime.timezone.utc)
+            post_data = json.dumps({
+                "name": user.name,
+                "state": not user.state
+            })
+            requests.post(os.getenv("MN_HOST") +
+                          "/api/change_state", json=post_data, headers={"Content-Type": "application/json"})
+            user.last = None if user.state else datetime.datetime.now(
+                datetime.timezone.utc)
             user.state = not user.state
             session.commit()
             sleep(2)
