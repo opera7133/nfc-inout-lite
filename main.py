@@ -15,6 +15,7 @@ import os
 import datetime
 import requests
 import json
+from requests.auth import HTTPBasicAuth
 load_dotenv()
 
 eel.init('web', allowed_extensions=['.js', '.html'])
@@ -59,7 +60,7 @@ def start_read():
                 "state": not user.state
             })
             requests.post(os.getenv("MN_HOST") +
-                          "/api/change_state", json=post_data, headers={"Content-Type": "application/json"})
+                          "/api/change_state", json=post_data, headers={"Content-Type": "application/json"}, auth=HTTPBasicAuth(os.getenv("MN_USER"), os.getenv("MN_PASS")))
             user.last = None if user.state else datetime.datetime.now(
                 datetime.timezone.utc)
             user.state = not user.state
