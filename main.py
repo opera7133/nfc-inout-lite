@@ -51,7 +51,7 @@ def start_read():
             wav_obj = simpleaudio.WaveObject.from_wave_file(
                 "success.wav")
             play_obj = wav_obj.play()
-            if (user.yomi != "" or user.yomi != None):
+            if (user.yomi != "" and user.yomi != None):
                 asyncio.run(play_voice(
                     user.yomi + "さん、お疲れ様なのだ！" if user.state else user.yomi + "さん、こんにちはなのだ！"))
             eel.set_readed(user.name, "out" if user.state else "in")
