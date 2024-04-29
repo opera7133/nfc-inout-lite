@@ -59,8 +59,9 @@ def start_read():
                 "name": user.name,
                 "state": not user.state
             })
-            requests.post(os.getenv("MN_HOST") +
-                          "/api/change_state", json=post_data, headers={"Content-Type": "application/json"}, auth=HTTPBasicAuth(os.getenv("MN_USER"), os.getenv("MN_PASS")))
+            res = requests.post(os.getenv("MN_HOST") +
+                                "/api/change_state", json=post_data, headers={"Content-Type": "application/json"}, auth=HTTPBasicAuth(os.getenv("MN_USER"), os.getenv("MN_PASS")))
+            print(res.status_code)
             user.last = None if user.state else datetime.datetime.now(
                 datetime.timezone.utc)
             user.state = not user.state
